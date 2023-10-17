@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@model HairSalon.Models.Stylist
+@using HairSalon.Models
+
+
+ @if (Model.Clients != null && Model.Clients.Any())
+  {
+    <h2>Clients for @Html.DisplayFor(model => model.Name):</h2>
+    foreach (Client client in Model.Clients)
+    {
+        <p>Client Name: @client.Name</p>
+    }
+  }
+  else
+  {
+    <p>No clients available for this stylist.</p>
+  }
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>
+
+<p>@Html.ActionLink("Add a Client", "Create", "Clients", null, new { @class = "btn" })</p>
