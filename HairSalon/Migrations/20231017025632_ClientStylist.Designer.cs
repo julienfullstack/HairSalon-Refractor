@@ -2,6 +2,7 @@
 using HairSalon.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,9 +10,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EauClairesSalon.Migrations
 {
     [DbContext(typeof(HairSalonContext))]
-    partial class HairSalonContextModelSnapshot : ModelSnapshot
+    [Migration("20231017025632_ClientStylist")]
+    partial class ClientStylist
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

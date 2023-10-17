@@ -3,9 +3,29 @@
 }
 
 @model HairSalon.Models.Client
+@using HairSalon.Models
 
-<h3>@Model.Name</h3>
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Client has no stylist</p>
+}
+else
+{
+  <h4>This client belongs to the following stylists:</h4>
+  <ul>
+    @foreach(ClientStylist join in Model.JoinEntities)
+    {
+      <li>Stylist: @join.Stylist.Name</li>
+      @using (Html.BeginForm("DeleteJoin", "Clients"))
+      {
+        @Html.Hidden("joinId", @join.ClientStylistId)
+        <input type="submit" value="Delete"/>
+      }
+    }
+  </ul>
 
-<p>@Html.DisplayNameFor(model => model.Stylist): @Html.DisplayFor(model => model.Stylist.Name)</p>
+}
+
+<p>@Html.ActionLink("Add a stylist to this client", "AddStylist")
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>

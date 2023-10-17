@@ -2,8 +2,7 @@
   Layout = "_Layout";
 }
 
-@using HairSalon.Models;
-@model List<HairSalon.Models.Client>;
+@using HairSalon.Models
 
 <h1>Clients</h1>
 
@@ -12,11 +11,10 @@
   <h3>No clients have been added yet!</h3>
 } 
 
-
 <ul>
   @foreach (Client client in Model)
 {
-  <li>@Html.ActionLink($"{client.Name}", "Show", new { id = client.ClientId},null) | @client.Stylist.Name</li>
+ <li>@Html.ActionLink($"{client.Name}", "Show", new { id = client.ClientId},null)</li>
 }
 </ul>
 
