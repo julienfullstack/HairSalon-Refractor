@@ -8,10 +8,9 @@ namespace HairSalon.Models
         public string Name { get; set; }
         
          public List<Client> Clients{ get; set; }
+        
+        public List<ClientStylist> JoinEntities { get; }
 
-        // public Stylist()
-        // {
-        //     this.Client = new HashSet<Client>();
-        // }
+
     }
 }

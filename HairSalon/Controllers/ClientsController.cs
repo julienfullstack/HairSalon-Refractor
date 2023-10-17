@@ -45,22 +45,44 @@ namespace HairSalon.Controllers
     public ActionResult Show(int id)
     {
       Client thisClient = _db.Clients
-                              .Include(client => client.Stylist)      
+                              .Include(client => client.JoinEntities)
+                              .ThenInclude(join => join.Stylist)
                               .FirstOrDefault(client => client.ClientId == id);
       return View(thisClient);
     }
 
+    public ActionResult AddStylist(int id)
+    {
+      Client thisClient = _db.Clients.FirstOrDefault(clients => clients.ClientId == id);
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+      return View(thisClient);
+    }
+
+    [HttpPost]
+    public ActionResult AddStylist(Client client, int stylistId)
+    {
+      #nullable enable
+      ClientStylist? joinEntity = _db.ClientStylists.FirstOrDefault(join => (join.ClientId == client.ClientId && join.StylistId == stylistId));
+      #nullable disable
+      if (joinEntity == null && stylistId != 0)
+      {
+        _db.ClientStylists.Add(new ClientStylist() { StylistId = stylistId, ClientId = client.ClientId });
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Show", new { id = client.ClientId });
+    }
+
+
     public ActionResult Edit(int id)
     {
       Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
-      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
       return View(thisClient);
     }
 
     [HttpPost]
     public ActionResult Edit(Client client)
     {
-      _db.Clients.Update(client);
+      _db.Entry(client).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -79,5 +101,15 @@ namespace HairSalon.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-  }
+
+ 	[HttpPost]
+		public ActionResult DeleteJoin(int joinId)
+		{
+			ClientStylist joinEntry = _db.ClientStylists.FirstOrDefault(entry => entry.ClientStylistId == joinId);
+			_db.ClientStylists.Remove(joinEntry);
+			_db.SaveChanges();
+			return RedirectToAction("Index");
+		}
+	}
+
 }
