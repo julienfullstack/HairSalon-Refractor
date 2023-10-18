@@ -13,6 +13,7 @@
     {
         <p>Client Name: @joinEntity.Client.Name</p>
     }
+    
 }
 else
 {
@@ -20,7 +21,5 @@ else
 }
 
 
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
-
-<p>@Html.ActionLink("Add a Client", "Create", "Clients", null, new { @class = "btn" })</p>
+<p>@Html.ActionLink("Add a Client", "AddClient", new { id = Model.StylistId })</p>
 
