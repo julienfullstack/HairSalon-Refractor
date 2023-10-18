@@ -1,6 +1,6 @@
 # _Eau Claire's Salon_
 
-#### By: _**Julien Lenaz**_
+#### By: _**Julien Lenaz**_, _**Will Jolley*_, _*Brandon Wright*_
 
 #### _A website for a salon owner to manage stylists and clients_
 
@@ -13,6 +13,7 @@
 * _Visual Studio Code_
 * _ASP.NET Core MVC_
 * _MySQL_
+* _Razor_
 
 ## Description
 #### _A website which allows a salon owner to see their list of stylists, see clients for each stylist, and add new stylists/clients._
