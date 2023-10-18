@@ -20,6 +20,7 @@ else
     <p>No clients available for this stylist.</p>
 }
 
+@Html.ActionLink("Delete", "Delete", new { id = Model.StylistId })
 
 <p>@Html.ActionLink("Add a Client", "AddClient", new { id = Model.StylistId })</p>
 

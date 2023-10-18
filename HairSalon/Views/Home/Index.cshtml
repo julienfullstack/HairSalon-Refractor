@@ -2,9 +2,34 @@
   Layout = "_Layout";
 }
 
+@using HairSalon.Models;
+
 <h1>Eau Claire's Hair Salon</h1>
-<p>@Html.ActionLink("Add a Stylist", "Create", "Stylists", null, new { @class = "btn" })</p>
-<p>@Html.ActionLink("Add a Client", "Create", "Clients", null, new { @class = "btn" })</p>
-<p>@Html.ActionLink("View Stylists", "Index", "Stylists", null, new { @class = "btn" })</p>
-<p>@Html.ActionLink("View Clients", "Index", "Clients", null, new { @class = "btn" })</p>
+
+<h4>Stylists</h4>
+@if (Model["stylists"].Length == 0)
+{
+  <p>No stylists have been added yet</p>
+}
+<ul>
+  @foreach (Stylist stylist in Model["stylists"])
+  {
+    <li>@Html.ActionLink(@stylist.Name, "Show", "Stylists", new {id = @stylist.StylistId})</li>
+  }
+</ul>
+
+<h4>Clients</h4>
+@if (Model["clients"].Length == 0)
+{
+  <p>No clients have been added yet</p>
+}
+<ul>
+  @foreach (Client client in Model["clients"])
+  {
+    <li>@Html.ActionLink(@client.Name, "Show", "Clients", new { id = @client.ClientId})</li>
+  }
+<!-- <p>@Html.ActionLink("Add a Stylist", "Create", "Stylists", null, new { @class = "btn" })</p>
+<p>@Html.ActionLink("Add a Client", "Create", "Clients", null, new { @class = "btn" })</p> -->
+<p>@Html.ActionLink("Manage Stylists", "Index", "Stylists", null, new { @class = "btn" })</p>
+<p>@Html.ActionLink("Manage Clients", "Index", "Clients", null, new { @class = "btn" })</p>
 ```
