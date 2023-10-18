@@ -10,7 +10,8 @@ namespace HairSalon.Models
          public List<Client> Clients{ get; set; }
         
         public List<ClientStylist> JoinEntities { get;}
-
+        
 
     }
 }
+

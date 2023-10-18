@@ -6,19 +6,21 @@
 @using HairSalon.Models
 
 
- @if (Model.Clients != null && Model.Clients.Any())
-  {
+@if (Model.JoinEntities != null && Model.JoinEntities.Any())
+{
     <h2>Clients for @Html.DisplayFor(model => model.Name):</h2>
-    foreach (Client client in Model.Clients)
+    foreach (ClientStylist joinEntity in Model.JoinEntities)
     {
-        <p>Client Name: @client.Name</p>
+        <p>Client Name: @joinEntity.Client.Name</p>
     }
-  }
-  else
-  {
+}
+else
+{
     <p>No clients available for this stylist.</p>
-  }
+}
+
 
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
 
 <p>@Html.ActionLink("Add a Client", "Create", "Clients", null, new { @class = "btn" })</p>
+
