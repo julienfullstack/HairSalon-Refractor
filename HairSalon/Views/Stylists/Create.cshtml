@@ -12,4 +12,5 @@
   <input class="btn" type ="submit" value="Add">
 }
 
+<p>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger", @style = "font-weight: 600;"}) </p>
 <p>@Html.ActionLink("Home", "Index", "Home")</p>
